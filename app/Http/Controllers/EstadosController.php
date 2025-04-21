@@ -2,42 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estado;
 use Illuminate\Http\Request;
-
 
 class EstadosController extends Controller
 {
-    public function listar_estados()
+
+    public function adicionar()
     {
-        return view('listar_estados');
+        return view('estado.inserir');
     }
 
-    public function inserir_estado(Request $request)
+    public function store(Request $request)
     {
-        $action = $request->input('action');
-
-        if ($action == 'Limpar') {
-            // limpar mensagem, sigla e estado
-            return redirect()->route('inserir_estado');
-        }
-
-        $nome = $request->input('nome');
-        $sigla = $request->input('sigla');
-
-        return redirect()->back()->with([
-            'nome' => $nome,
-            'sigla' => $sigla,
-            'success' => 'Estado inserido com sucesso!',
+        $request->validate([
+            'nome' => 'required|string|max:50',
+            'sigla' => 'required|string|max:2',
         ]);
+
+        Estado::create($request->only('nome', 'sigla'));
+
+        return redirect()->route('estado.listar')->with('success', 'Estado cadastrado com sucesso!');
     }
 
-
-    public function editar_estado()
+    public function listar()
     {
-        return view('editar_estado');
+        $estados = Estado::all();
+        return view('estado.listar', compact('estados'));
     }
-    public function excluir_estado()
+
+    public function update(Request $request, Estado $estado)
     {
-        return view('excluir_estado');
+        $estado->update($request->all());
+        return $estado;
+    }
+
+    public function destroy(Estado $estado)
+    {
+        $estado->delete();
+        return response()->noContent();
     }
 }

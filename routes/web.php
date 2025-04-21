@@ -7,38 +7,35 @@ use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\GruposController;
 
 
-//Route::get('/', 'HomeController@index'); versões abaixo de 8
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/estados_inserir', [EstadosController::class, 'inserir_estado']);
-Route::post('/estados_inserir', [EstadosController::class, 'inserir_estado'])->name('inserir_estado');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/estado/inserir', [EstadosController::class, 'adicionar'])->name('estado.inserir'); // Mostrar form
+Route::post('/estado/store', [EstadosController::class, 'store'])->name('estado.store'); // Cadastrar Estado
+Route::get('/estado/listar', [EstadosController::class, 'listar'])->name('estado.listar'); // Listar Estados
 
 
 
-Route::view('/estados_listar', [EstadosController::class, 'listar_estados'])->name('listar_estado');
-Route::view('/estados_inserir', [EstadosController::class, 'inserir_estado']);
-Route::view('/estados_editar', [EstadosController::class, 'editar_estado']);
-Route::view('/estados_excluir', [EstadosController::class, 'excluir_estado']);
 
 
-Route::view('/cidades_listar', [CidadeController::class, 'listar_cidades'])->name('listar_cidades');
-Route::view('/cidades_inserir', [CidadeController::class, 'inserir_cidade'])->name('inserir_cidade');
-Route::view('/cidades_editar', [CidadeController::class, 'editar_cidade'])->name('editar_cidade');
-Route::view('/cidades_excluir', [CidadeController::class, 'excluir_cidade'])->name('excluir_cidade');
+Route::view('/cidade/listar', [CidadeController::class, 'listar'])->name('cidade.listar');
+Route::view('/cidade/inserir', [CidadeController::class, 'adicionar'])->name('cidade.inserir');
+Route::view('/cidade/editar', [CidadeController::class, 'editar'])->name('cidade.editar');
+Route::view('/cidade/excluir', [CidadeController::class, 'excluir'])->name('cidade.excluir');
 
 Route::view('/grupos_listar', [GruposController::class, 'listar_grupo'])->name('listar_grupos');
 
 
-Route::view('/campanhas_listar', [EstadosController::class, 'listar_campanhas'])->name('listar_campanhas');
-Route::view('/campanhas_inserir', [EstadosController::class, 'inserir_campanha'])->name('inserir_campanha');
-Route::view('/campanhas_editar', [EstadosController::class, 'editar_campanha'])->name('editar_campanha');
-Route::view('/campanhas_excluir', [EstadosController::class, 'excluir_campanha'])->name('excluir_campanha');
+Route::view('/campanhas/listar', [EstadosController::class, 'listar_campanhas'])->name('listar_campanhas');
+Route::view('/campanhas/inserir', [EstadosController::class, 'inserir_campanha'])->name('inserir_campanha');
+Route::view('/campanhas/editar', [EstadosController::class, 'editar_campanha'])->name('editar_campanha');
+Route::view('/campanhas/excluir', [EstadosController::class, 'excluir_campanha'])->name('excluir_campanha');
 
-Route::view('/descontos_listar', [EstadosController::class, 'listar_descontos'])->name('listar_descontos');
-Route::view('/descontos_inserir', [EstadosController::class, 'inserir_desconto'])->name('inserir_desconto');
-Route::view('/descontos_editar', [EstadosController::class, 'editar_desconto'])->name('editar_desconto');
-Route::view('/descontos_excluir', [EstadosController::class, 'excluir_desconto'])->name('excluir_desconto');
+Route::view('/descontos/listar', [EstadosController::class, 'listar_descontos'])->name('descontos.listar');
+Route::view('/descontos/inserir', [EstadosController::class, 'inserir_desconto'])->name('desconto.inserir');
+Route::view('/descontos/editar', [EstadosController::class, 'editar_desconto'])->name('desconto.editar');
+Route::view('/descontos/excluir', [EstadosController::class, 'excluir_desconto'])->name('desconto.excluir');
 
-Route::view('/produtos_listar', [EstadosController::class, 'listar_produtos'])->name('listar_produtos');
-Route::view('/produtos_inserir', [EstadosController::class, 'inserir_produto'])->name('inserir_produto');
-Route::view('/produtos_editar', [EstadosController::class, 'editar_produto'])->name('editar_produto');
-Route::view('/produtos_excluir', [EstadosController::class, 'excluir_produto'])->name('excluir_produto');
+Route::view('/produtos/listar', [EstadosController::class, 'listar_produtos'])->name('produtos.listar');
+Route::view('/produtos/inserir', [EstadosController::class, 'inserir_produto'])->name('produto.inserir');
+Route::view('/produtos/editar', [EstadosController::class, 'editar_produto'])->name('produto.editar');
+Route::view('/produtos/excluir', [EstadosController::class, 'excluir_produto'])->name('produto.excluir');

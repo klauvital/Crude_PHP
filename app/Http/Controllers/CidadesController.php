@@ -7,37 +7,23 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
-    public function listar_cidades()
+    public function listar()
     {
-        return view('listar_cidades');
+        return view('cidade.listar');
     }
 
-    public function inserir_cidade(Request $request)
+    public function adicionar()
     {
-        $action = $request->input('action');
-
-        if ($action == 'Limpar') {
-            // limpar mensagem, sigla e estado
-            return redirect()->route('inserir_cidade');
-        }
-
-        $cidade = $request->input('cidade');
-        $estado = $request->input('estado');
-
-        return redirect()->back()->with([
-            'cidade' => $cidade,
-            'estado' => $estado,
-            'success' => 'Cidade inserido com sucesso!',
-        ]);
+        return view('estado.inserir');
     }
 
 
-    public function editar_estado()
+    public function editar()
     {
-        return view('editar_estado');
+        return view('estado.editar');
     }
     public function excluir_estado()
     {
-        return view('excluir_estado');
+        return view('estado.excluir');
     }
 }

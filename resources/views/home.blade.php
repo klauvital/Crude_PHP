@@ -10,12 +10,12 @@
 <h2>Menu </h2>
 
 
-<h3><a href="{{ route('listar_estado') }}">Estados</a></h3>
-<h3><a href="{{ route('listar_cidades') }}">Cidades</h3>
-<h3><a href="{{ route('listar_grupos') }}">Grupos de UF/Cidades</h3>
-<h3><a href="{{ route('listar_campanhas') }}">Campanhas</h3>
-<h3><a href="{{ route('listar_descontos') }}">Desconto</h3>
-<h3><a href="{{ route('listar_produtos') }}">Produtos</h3>
+<h3><a href="{{ route('estado.listar') }}">Estados</a></h3>
+<h3><a href="{{ route('cidade.listar') }}">Cidades</a></h3>
+<h3><a href="#">Grupos de UF/Cidades</a></h3>
+<h3><a href="#">Campanhas</a></h3>
+<h3><a href="#">Desconto</a></h3>
+<h3><a href="#">Produtos</a></h3>
 
 <h2>Detalhes do Desafio</h2>
 Montar uma api RESTful com Laravel para alimentar uma SPA com as seguintes
