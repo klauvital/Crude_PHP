@@ -7,7 +7,11 @@
 /storage/*.key
 /storage/pail
 /vendor
+/programas_documentos
 .env
+.gitgnore
+.Git_comandos.txt
+.script.sql
 .env.backup
 .env.production
 .phpactor.json
