@@ -1,0 +1,9 @@
+git init
+git remote add origin main "Endereço repositório GitHub"
+git pull origin main (baixa o readme.md)
+
+
+git status
+git add .
+git commit -m "Descrever o que foi desenvolvido"
+git push origin main
