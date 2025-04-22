@@ -12,9 +12,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/estado/inserir', [EstadosController::class, 'adicionar'])->name('estado.inserir'); // Mostrar form
 Route::post('/estado/store', [EstadosController::class, 'store'])->name('estado.store'); // Cadastrar Estado
 Route::get('/estado/listar', [EstadosController::class, 'listar'])->name('estado.listar'); // Listar Estados
-
-
-
+Route::get('/estado/{id}/editar', [EstadosController::class, 'editar'])->name('estado.editar'); // Formulário editar
+Route::put('/estado/{id}', [EstadosController::class, 'update'])->name('estado.update'); // Salvar edição 
+Route::delete('/estado/{id}/excluir', [EstadosController::class, 'excluir'])->name('estado.excluir');
 
 
 Route::view('/cidade/listar', [CidadeController::class, 'listar'])->name('cidade.listar');

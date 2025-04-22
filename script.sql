@@ -3,5 +3,19 @@ use teste_criar
 
 SHOW databases;
 SHOW tables;
+select * from  estados;
+
 CREATE USER 'claudia_criar'@'localhost' IDENTIFIED BY '123456';
 GRANT ALL PRIVILEGES ON nome_do_banco.* TO 'claudia_criar'@'localhost';
+
+GRANT ALL PRIVILEGES ON teste_criar.* TO 'claudia_criar'@'localhost' IDENTIFIED BY '123456';
+FLUSH PRIVILEGES;
+
+CREATE USER 'claudia_criar'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON teste_criar.* TO 'claudia_criar'@'localhost';
+FLUSH PRIVILEGES;
+
+GRANT ALL PRIVILEGES ON teste_criar.* TO 'claudia_criar'@'localhost';
+FLUSH PRIVILEGES;
+
+

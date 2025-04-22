@@ -1,32 +1,30 @@
-<h1>Desafio WEB Backend </h1>
+@extends('layouts.app')
 
-<p>Nome : <b>{{$usuario}}</b></p>
-<p>Vaga : <b>{{$perfil}}</b></p>
-<p>Área : <b>{{$area}}</b></p>
-<p>Empresa: <b>{{$empresa}}</b></p>
-<p>Data Início: <b>{{$data}}</b></p>
+@section('content')
+<!-- Conteúdo principal -->
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">TESTE CRIAR</h1>
 
+    <div class="mb-4">
+        <p>Nome: <b>{{ $usuario }}</b></p>
+        <p>Vaga: <b>{{ $perfil }}</b></p>
+        <p>Área: <b>{{ $area }}</b></p>
+        <p>Empresa: <b>{{ $empresa }}</b></p>
+        <p>Data Início: <b>{{ $data }}</b></p>
+    </div>
 
-<h2>Menu </h2>
+    <h2 class="mt-4">Detalhes do Desafio</h2>
+    <p>Montar uma API RESTful com Laravel para alimentar uma SPA com as seguintes funções:</p>
+    <ul>
+        <li>Cadastrar/Editar/Listar/Excluir estados</li>
+        <li>Cadastrar/Editar/Listar/Excluir cidades</li>
+        <li>Cadastrar/Editar/Listar/Excluir grupo de cidades (cluster)</li>
+        <li>Cadastrar/Editar/Listar/Excluir campanhas para o grupo de cidades onde cada grupo possui somente uma campanha ativa</li>
+        <li>Cadastrar/Editar/Listar/Excluir desconto em valor e em percentual da campanha</li>
+        <li>Cadastrar/Editar/Listar/Excluir produtos</li>
+    </ul>
+    <p>Cada cidade possui somente um grupo.</p>
+</div>
 
-
-<h3><a href="{{ route('estado.listar') }}">Estados</a></h3>
-<h3><a href="{{ route('cidade.listar') }}">Cidades</a></h3>
-<h3><a href="#">Grupos de UF/Cidades</a></h3>
-<h3><a href="#">Campanhas</a></h3>
-<h3><a href="#">Desconto</a></h3>
-<h3><a href="#">Produtos</a></h3>
-
-<h2>Detalhes do Desafio</h2>
-Montar uma api RESTful com Laravel para alimentar uma SPA com as seguintes
-funções:
-○ Cadastrar/Editar/Listar/Excluir estados;
-○ Cadastrar/Editar/Listar/Excluir cidades;
-○ Cadastrar/Editar/Listar/Excluir grupo de cidades (cluster);
-○ Cadastrar/Editar/Listar/Excluir campanhas para o grupo de cidades onde cada
-grupo possui somente uma campanha ativa;
-○ Cadastrar/Editar/Listar/Excluir desconto em valor e em percentual da
-campanha;
-○ Cadastrar/Editar/Listar/Excluir produtos;
-● As tabelas de relacionamento estão a cargo do candidato;
-● Cada cidade possui somente um grupo;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@endsection

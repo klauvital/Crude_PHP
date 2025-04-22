@@ -31,15 +31,32 @@ class EstadosController extends Controller
         return view('estado.listar', compact('estados'));
     }
 
-    public function update(Request $request, Estado $estado)
+    public function editar($id)
     {
-        $estado->update($request->all());
-        return $estado;
+        $estado = Estado::findOrFail($id);
+        return view('estado.editar', compact('estado'));
     }
 
-    public function destroy(Estado $estado)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'sigla' => 'required|string|max:2',
+        ]);
+
+        $estado = Estado::findOrFail($id);
+        $estado->nome = $request->nome;
+        $estado->sigla = $request->sigla;
+        $estado->save();
+
+        return redirect()->route('estado.listar')->with('success', 'Estado atualizado com sucesso.');
+    }
+
+    public function excluir($id)
+    {
+        $estado = Estado::findOrFail($id);
         $estado->delete();
-        return response()->noContent();
+
+        return response()->json(['success' => true]);
     }
 }
