@@ -19,7 +19,16 @@ class EstadosController extends Controller
             'nome' => 'required|string|max:50',
             'sigla' => 'required|string|max:2',
         ]);
+        // Verifica se o estado esta cadastrado
+        $estadoExistente = Estado::where('nome', $request->nome)
+            ->where('sigla', $request->sigla)
+            ->first();
 
+        if ($estadoExistente) {
+            return redirect()->back()
+                ->withErrors(['nome' => "{$request->nome} -  Estado já está cadastrado."])
+                ->withInput();
+        }
         Estado::create($request->only('nome', 'sigla'));
 
         return redirect()->route('estado.listar')->with('success', 'Estado cadastrado com sucesso!');
@@ -27,12 +36,14 @@ class EstadosController extends Controller
 
     public function listar()
     {
-        $estados = Estado::all();
+
+        $estados = Estado::orderBy('nome', 'asc')->get();
         return view('estado.listar', compact('estados'));
     }
 
     public function editar($id)
     {
+
         $estado = Estado::findOrFail($id);
         return view('estado.editar', compact('estado'));
     }
@@ -43,11 +54,24 @@ class EstadosController extends Controller
             'nome' => 'required|string|max:255',
             'sigla' => 'required|string|max:2',
         ]);
-
         $estado = Estado::findOrFail($id);
-        $estado->nome = $request->nome;
-        $estado->sigla = $request->sigla;
-        $estado->save();
+        // Verifica se o estado esta cadastrado
+        $estadoExistente = Estado::where('nome', $request->nome)
+            ->where('sigla', $request->sigla)
+            ->first();
+
+        if ($estadoExistente) {
+            return redirect()->back()
+                ->withErrors(['nome' => "{$request->nome} -  Estado já está cadastrado."])
+                ->withInput();
+        }
+
+
+        $estado->update([
+            'nome' => $request->nome,
+            'sigla' => $request->sigla,
+        ]);
+
 
         return redirect()->route('estado.listar')->with('success', 'Estado atualizado com sucesso.');
     }

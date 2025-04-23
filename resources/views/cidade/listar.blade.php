@@ -1,52 +1,67 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Cidades</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('content')
+<div class="container">
+    <h3 class="mb-4">Lista de Cidades</h3>
+    <a href="{{ route('cidade.inserir') }}" class="btn btn-success mb-3">Inserir</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary mb-3">Home</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
 
-<body class="p-5 bg-light">
+                <th>Nome</th>
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+            @foreach ($cidades as $cidade)
+            <tr>
 
-    <div class="container">
-        <h1 class="mb-4">Lista de Cidades</h1>
+                <td class="text-capitalize">{{ $cidade->nome }}</td>
 
-        <a href="{{ route('cidade.inserir') }}" class="btn btn-success mb-3">Nova Cidade</a>
+                <td class="text-uppercase">{{ $cidade->estado->sigla ?? '' }}</td>
 
-        @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Estado</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($cidades as $cidade)
-                <tr>
-                    <td>{{ $cidade->id }}</td>
-                    <td>{{ $cidade->nome }}</td>
-                    <td>{{ $cidade->estado->nome }} ({{ $cidade->estado->sigla }})</td>
-                    <td>
-                        <a href="{{ route('cidade.edit', $cidade->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                        <form action="{{ route('cidade.destroy', $cidade->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir esta cidade?')">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </td>
+                <td>
+                    <a href="{{ route('cidade.editar', $cidade->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{{ route('cidade.excluir', $cidade->id) }}" class="btn btn-sm btn-danger"
+                        onclick="return confirm('Deseja excluir?')">Excluir</a>
+                </td>
+            </tr>
+            @endforeach
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.btn-excluir').on('click', function() {
+            const id = $(this).data('id');
+            const nome = $(this).data('nome');
+            const button = $(this);
 
-</body>
-
-</html>
+            if (confirm('Deseja mesmo deletar o estado: ' + nome + '?')) {
+                $.ajax({
+                    url: '/estado/' + id + '/excluir',
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Remove a linha da tabela
+                            button.closest('tr').fadeOut(300, function() {
+                                $(this).remove();
+                            });
+                        } else {
+                            alert('Erro ao excluir.');
+                        }
+                    },
+                    error: function() {
+                        alert('Erro ao excluir.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+@endsection

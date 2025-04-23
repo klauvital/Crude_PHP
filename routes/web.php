@@ -4,11 +4,13 @@ use App\Http\Controllers\CidadeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EstadosController;
+use App\Http\Controllers\CidadesController;
 use App\Http\Controllers\GruposController;
 
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/estado/inserir', [EstadosController::class, 'adicionar'])->name('estado.inserir'); // Mostrar form
 Route::post('/estado/store', [EstadosController::class, 'store'])->name('estado.store'); // Cadastrar Estado
 Route::get('/estado/listar', [EstadosController::class, 'listar'])->name('estado.listar'); // Listar Estados
@@ -17,10 +19,14 @@ Route::put('/estado/{id}', [EstadosController::class, 'update'])->name('estado.u
 Route::delete('/estado/{id}/excluir', [EstadosController::class, 'excluir'])->name('estado.excluir');
 
 
-Route::view('/cidade/listar', [CidadeController::class, 'listar'])->name('cidade.listar');
-Route::view('/cidade/inserir', [CidadeController::class, 'adicionar'])->name('cidade.inserir');
-Route::view('/cidade/editar', [CidadeController::class, 'editar'])->name('cidade.editar');
-Route::view('/cidade/excluir', [CidadeController::class, 'excluir'])->name('cidade.excluir');
+Route::prefix('cidade')->group(function () {
+    Route::get('listar', [CidadesController::class, 'listar'])->name('cidade.listar');
+    Route::get('inserir', [CidadesController::class, 'inserir'])->name('cidade.inserir');
+    Route::post('salvar', [CidadesController::class, 'salvar'])->name('cidade.salvar');
+    Route::get('editar/{id}', [CidadesController::class, 'editar'])->name('cidade.editar');
+    Route::put('atualizar/{id}', [CidadesController::class, 'atualizar'])->name('cidade.atualizar');
+    Route::get('excluir/{id}', [CidadesController::class, 'excluir'])->name('cidade.excluir');
+});
 
 Route::view('/grupos_listar', [GruposController::class, 'listar_grupo'])->name('listar_grupos');
 
