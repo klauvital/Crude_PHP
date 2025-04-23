@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\CidadesController;
-use App\Http\Controllers\GruposController;
+use App\Http\Controllers\GrupoCidadeController;
 
 
 
@@ -25,10 +25,17 @@ Route::prefix('cidade')->group(function () {
     Route::post('salvar', [CidadesController::class, 'salvar'])->name('cidade.salvar');
     Route::get('editar/{id}', [CidadesController::class, 'editar'])->name('cidade.editar');
     Route::put('atualizar/{id}', [CidadesController::class, 'atualizar'])->name('cidade.atualizar');
-    Route::get('excluir/{id}', [CidadesController::class, 'excluir'])->name('cidade.excluir');
+    Route::delete('/excluir/{id}', [CidadesController::class, 'excluir'])->name('cidade.excluir');
 });
 
-Route::view('/grupos_listar', [GruposController::class, 'listar_grupo'])->name('listar_grupos');
+Route::prefix('grupo-cidade')->group(function () {
+    Route::get('/', [GrupoCidadeController::class, 'listar'])->name('grupo_cidade.listar');
+    Route::get('/inserir', [GrupoCidadeController::class, 'inserir'])->name('grupo_cidade.inserir');
+    Route::post('/salvar', [GrupoCidadeController::class, 'salvar'])->name('grupo_cidade.salvar');
+    Route::get('/editar/{id}', [GrupoCidadeController::class, 'editar'])->name('grupo_cidade.editar');
+    Route::put('/atualizar/{id}', [GrupoCidadeController::class, 'atualizar'])->name('grupo_cidade.atualizar');
+    Route::delete('/excluir/{id}', [GrupoCidadeController::class, 'excluir'])->name('grupo_cidade.excluir');
+});
 
 
 Route::view('/campanhas/listar', [EstadosController::class, 'listar_campanhas'])->name('listar_campanhas');

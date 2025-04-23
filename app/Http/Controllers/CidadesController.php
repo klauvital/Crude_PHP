@@ -91,6 +91,6 @@ class CidadesController extends Controller
         $cidade = Cidade::findOrFail($id);
         $cidade->delete();
 
-        return redirect()->route('cidade.listar');
+        return response()->json(['success' => true, 'message' => 'Grupo de cidades excluído com sucesso.']);
     }
 }

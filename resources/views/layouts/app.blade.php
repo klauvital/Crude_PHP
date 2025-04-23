@@ -41,7 +41,7 @@
                         <a class="nav-link " href="{{ route('cidade.listar') }}">Cidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Grupos de UF/Cidades</a>
+                        <a class="nav-link " href="{{ route('grupo_cidade.listar') }}">Grupos de Cidades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#">Campanhas</a>

@@ -29,15 +29,15 @@
 
         <div class="mb-3">
             <label for="id_estado" class="form-label">Estado:</label>
-            <select class="form-select" name="id_estado" id="id_estado" required>
-                <option value="">Selecione</option>
+            <select class="form-select text-uppercase" name="id_estado" id="id_estado" required>
+                <option class="text-capitalize" value="">Selecione</option>
                 @foreach ($estados as $estado)
-                <option class="form-select text-uppercase" value="{{ $estado->id }}">{{ $estado->sigla }}</option>
+                <option class="text-uppercase" value="{{ $estado->id }}">{{ $estado->sigla }}</option>
                 @endforeach
             </select>
         </div>
 
-        <button class="btn btn-primary" type="submit">Salvar</button>
+        <button class="btn btn-success" type="submit">Salvar</button>
     </form>
 </div>
 @endsection

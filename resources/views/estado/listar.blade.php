@@ -3,13 +3,28 @@
 @section('content')
 <div class="container">
     <h3 class="mb-4">Lista de Estados</h3>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <a href="{{ route('estado.inserir') }}" class="btn btn-success mb-3">Inserir</a>
     <a href="{{ route('home') }}" class="btn btn-secondary mb-3">Home</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-               
+
                 <th>Nome</th>
                 <th>Sigla</th>
                 <th>Acões</th>
@@ -18,7 +33,7 @@
         <tbody>
             @foreach ($estados as $estado)
             <tr>
-               
+
                 <td class="text-capitalize">{{ $estado->nome }}</td>
                 <td class="text-uppercase">{{ $estado->sigla }}</td>
                 <td>
@@ -44,7 +59,7 @@
             const nome = $(this).data('nome');
             const button = $(this);
 
-            if (confirm('Deseja mesmo deletar o estado e as cidades dele : ' + nome + '?')) {
+            if (confirm('Deseja mesmo excluir o estado e as cidades dele : ' + nome + '?')) {
                 $.ajax({
                     url: '/estado/' + id + '/excluir',
                     type: 'DELETE',

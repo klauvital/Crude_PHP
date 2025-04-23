@@ -33,7 +33,7 @@
             <input type="text" name="sigla" id="sigla" class="form-control text-uppercase" placeholder="Ex: SP" value="{{ old('sigla') }}" maxlength="2" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
     </form>
 </div>
 @endsection

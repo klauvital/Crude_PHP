@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h3 class="mb-4">Lista de Cidades</h3>
+    <h3 class="mb-4">Listar Grupo de Cidades</h3>
+
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -18,45 +19,39 @@
         </ul>
     </div>
     @endif
-    <a href="{{ route('cidade.inserir') }}" class="btn btn-success mb-3">Inserir</a>
+    <a href="{{ route('grupo_cidade.inserir') }}" class="btn btn-success mb-3">Inserir</a>
     <a href="{{ route('home') }}" class="btn btn-secondary mb-3">Home</a>
 
     <table class="table table-bordered">
         <thead>
             <tr>
-
-                <th>Nome</th>
-                <th>Estado</th>
+                <th>Grupo</th>
+                <th>Cidades</th>
                 <th>Ações</th>
             </tr>
-            @foreach ($cidades as $cidade)
+        </thead>
+        <tbody>
+            @foreach ($grupos as $grupo)
             <tr>
-
-                <td class="text-capitalize">{{ $cidade->nome }}</td>
-
-                <td class="text-uppercase">{{ $cidade->estado->sigla ?? '' }}</td>
-
-
+                <td class="text-capitalize">{{ $grupo->nome_grupo }}</td>
+                <td class="text-capitalize">
+                    @foreach ($grupo->relacoes as $relacao)
+                    {{ $relacao->cidade->nome }}
+                    @if (!$loop->last), @endif
+                    @endforeach
                 </td>
-                <td>
-                    <a href="{{ route('cidade.editar', $cidade->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button class="btn btn-sm btn-danger btn-excluir" data-id="{{ $cidade->id }}" data-nome="{{ $cidade->nome }}">
+                <td class="text-capitalize">
+                    <a href="{{ route('grupo_cidade.editar', $grupo->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <button class="btn btn-sm btn-danger btn-excluir" data-id="{{ $grupo->id }}" data-nome="{{ $grupo->nome_grupo }}">
                         Excluir
                     </button>
-
 
                 </td>
             </tr>
             @endforeach
+        </tbody>
     </table>
 </div>
-<script src=" https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    function capitalizarTexto(texto) {
-        return texto.replace(/\b\w/g, letra => letra.toUpperCase());
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -66,10 +61,9 @@
             const nome = $(this).data('nome');
             const button = $(this);
 
-            if (confirm('Deseja mesmo excluir a cidade : ' + nome + '?')) {
+            if (confirm('Deseja mesmo excluir o grupo de cidades: ' + nome + '?')) {
                 $.ajax({
-
-                    url: '/cidade/excluir/' + id,
+                    url: '/grupo-cidade/excluir/' + id, // Corrigido aqui
                     type: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'

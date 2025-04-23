@@ -32,7 +32,7 @@
             <input type="text" name="sigla" class="form-control text-uppercase" value="{{ $estado->sigla }}" required>
         </div>
         <div class="mt-3">
-            <button type="submit" class=" btn btn-primary">Salvar</button>
+            <button type="submit" class=" btn btn-success">Salvar</button>
             <a href="{{ route('estado.listar') }}" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
