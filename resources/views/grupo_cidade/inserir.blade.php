@@ -26,14 +26,22 @@
         <input type="text" name="nome_grupo" class="form-control text-capitalize" required>
 
         <label>Cidades:</label>
-        <select class="form-select text-capitalize" name="cidades[]" multiple class="form-select" required>
-            @foreach ($cidades as $cidade)
+        @if ($cidadesDisponiveis->isEmpty())
+        <div class="alert alert-info">
+            Não há mais cidades disponíveis para serem adicionadas a um grupo.
+        </div>
+        @else
+        <label for="cidades">Selecione as cidades</label>
+        <select class="form-select text-capitalize" name="cidades[]" multiple required>
+            @foreach ($cidadesDisponiveis as $cidade)
             <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
             @endforeach
         </select>
 
-        <br>
-        <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="submit" class="btn btn-success mt-3">Salvar</button>
+        @endif
+
+        <a href="{{ route('grupo_cidade.listar') }}" class="btn btn-secondary mt-3">Cancelar</a>
     </form>
 </div>
 @endsection
