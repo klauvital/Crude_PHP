@@ -32,7 +32,7 @@
         </div>
         @else
         <label for="cidades">Selecione as cidades</label>
-        <select class="form-select text-capitalize" name="cidades[]" multiple required>
+        <select class="form-select text-capitalize" size=15 name="cidades[]" multiple required>
             @foreach ($cidadesDisponiveis as $cidade)
             <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
             @endforeach

@@ -47,10 +47,10 @@
                         <a class="nav-link " href="{{ route('produto.listar') }}">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Campanhas</a>
+                        <a class="nav-link " href="{{ route('campanha.listar') }}">Campanhas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Desconto</a>
+                        <a class="nav-link " href="{{ route('desconto.listar') }}">Desconto</a>
                     </li>
 
                 </ul>

@@ -24,12 +24,12 @@
 
         <div class="mb-3">
             <label for="nome" class="form-label">Nome do Produto</label>
-            <input type="text" name="nome" id="nome" class="form-control text-capitalize" value="{{ old('nome', $produto->nome) }}" required>
+            <input type="text" name="nome" id="nome" class="form-control text-capitalize" rows="2" maxlength="300" value="{{ old('nome', $produto->nome) }}" required>
         </div>
 
         <div class=" mb-3">
             <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" name="descricao" id="descricao" class="form-control text-capitalize" value="{{ old('descricao', $produto->descricao) }}" required>
+            <input type="text" name="descricao" id="descricao" class="form-control text-capitalize" rows="4" maxlength="600" value="{{ old('descricao', $produto->descricao) }}" required>
         </div>
 
         <div class=" mb-3">

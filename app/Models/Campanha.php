@@ -22,4 +22,11 @@ class Campanha extends Model
             ->withPivot('id_desconto')
             ->withTimestamps();
     }
+    public function campanhaProdutoRelacoes()
+    {
+        return $this->hasMany(CampanhaProdutoRelacao::class, 'id_campanha');
+    }
+
+    // Se quiser acessar diretamente os produtos:
+  
 }

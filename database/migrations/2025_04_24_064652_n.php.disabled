@@ -1,0 +1,35 @@
+<?php
+
+// Migration disabled to prevent duplicate table creation error
+// This migration is not needed as the table already exists
+
+// return new class extends Migration
+// {
+//     /**
+//      * Run the migrations.
+//      */
+//     public function up(): void
+//     {
+//         Schema::create('campanha_produto_relacao', function (Blueprint $table) {
+//             $table->unsignedBigInteger('id_campanha');
+//             $table->unsignedBigInteger('id_produto');
+//             $table->unsignedBigInteger('id_desconto')->nullable();
+
+//             $table->timestamps();
+
+//             $table->primary(['id_campanha', 'id_produto']);
+
+//             $table->foreign('id_campanha')->references('id')->on('campanhas')->onDelete('cascade');
+//             $table->foreign('id_produto')->references('id')->on('produtos')->onDelete('cascade');
+//             $table->foreign('id_desconto')->references('id')->on('descontos')->nullOnDelete();
+//         });
+//     }
+
+//     /**
+//      * Reverse the migrations.
+//      */
+//     public function down(): void
+//     {
+//         Schema::dropIfExists('campanha_produto_relacao');
+//     }
+// };

@@ -16,8 +16,8 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:50',
-            'descricao' => 'required|string|max:200',
+            'nome' => 'required|string|max:300',
+            'descricao' => 'required|string|max:600',
             'valor' => 'required|numeric',
         ]);
 
@@ -50,8 +50,8 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'required|string|max:200',
+            'nome' => 'required|string|max:300',
+            'descricao' => 'required|string|max:600',
             'valor' => 'required|numeric',
         ]);
         $produto = Produto::findOrFail($id);

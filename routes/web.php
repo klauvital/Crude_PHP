@@ -7,7 +7,8 @@ use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\CidadesController;
 use App\Http\Controllers\GrupoCidadeController;
 use App\Http\Controllers\ProdutoController;
-
+use App\Http\Controllers\CampanhaController;
+use App\Http\Controllers\DescontoController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -45,4 +46,32 @@ Route::prefix('produto')->group(function () {
     Route::get('editar/{id}', [ProdutoController::class, 'editar'])->name('produto.editar');
     Route::put('atualizar/{id}', [ProdutoController::class, 'update'])->name('produto.atualizar');
     Route::delete('excluir/{id}', [ProdutoController::class, 'excluir'])->name('produto.excluir');
+});
+
+
+Route::prefix('campanha')->group(function () {
+    Route::get('listar', [CampanhaController::class, 'listar'])->name('campanha.listar');
+    Route::get('inserir', [CampanhaController::class, 'adicionar'])->name('campanha.inserir');
+    Route::post('salvar', [CampanhaController::class, 'store'])->name('campanha.salvar');
+    Route::get('editar/{id}', [CampanhaController::class, 'editar'])->name('campanha.editar');
+    Route::put('atualizar/{id}', [CampanhaController::class, 'update'])->name('campanha.atualizar');
+    Route::delete('excluir/{id}', [CampanhaController::class, 'excluir'])->name('campanha.excluir');
+});
+
+Route::prefix('desconto')->group(function () {
+    Route::get('listar', [DescontoController::class, 'index'])->name('desconto.listar');
+    Route::get('inserir', [DescontoController::class, 'create'])->name('desconto.inserir');
+    Route::post('salvar', [DescontoController::class, 'store'])->name('desconto.salvar');
+    Route::get('editar/{id}', [DescontoController::class, 'edit'])->name('desconto.editar');
+    Route::put('atualizar/{id}', [DescontoController::class, 'update'])->name('desconto.atualizar');
+    Route::delete('excluir/{id}', [DescontoController::class, 'destroy'])->name('desconto.excluir');
+});
+
+Route::prefix('desconto')->group(function () {
+    Route::get('listar', [DescontoController::class, 'index'])->name('desconto.listar');
+    Route::get('inserir', [DescontoController::class, 'create'])->name('desconto.inserir');
+    Route::post('salvar', [DescontoController::class, 'store'])->name('desconto.salvar');
+    Route::get('editar/{id}', [DescontoController::class, 'edit'])->name('desconto.editar');
+    Route::put('atualizar/{id}', [DescontoController::class, 'update'])->name('desconto.atualizar');
+    Route::delete('excluir/{id}', [DescontoController::class, 'destroy'])->name('desconto.excluir');
 });
