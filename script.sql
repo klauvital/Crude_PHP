@@ -4,6 +4,10 @@ use teste_criar
 SHOW databases;
 SHOW tables;
 select * from  estados;
+select * from  cidades;
+select * from grupo_cidades;
+select * from  grupo_cidade_relacao;
+
 
 CREATE USER 'claudia_criar'@'localhost' IDENTIFIED BY '123456';
 GRANT ALL PRIVILEGES ON nome_do_banco.* TO 'claudia_criar'@'localhost';

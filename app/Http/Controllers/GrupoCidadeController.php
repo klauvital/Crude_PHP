@@ -87,7 +87,8 @@ class GrupoCidadeController extends Controller
             'cidades' => 'required|array|min:1',
         ]);
         // Verifica duplicidade pelo nome
-        $existe = GrupoCidade::where('nome_grupo', $request->nome_grupo)->exists();
+        $existe = GrupoCidade::where('nome_grupo', $request->nome_grupo)
+            ->where('id', '!=', $id)->exists();
         if ($existe) {
             return redirect()->back()
                 ->withErrors(['duplicado' => "{$request->nome_grupo} - Grupo já existe com este nome."])

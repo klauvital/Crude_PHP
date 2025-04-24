@@ -44,14 +44,15 @@
                         <a class="nav-link " href="{{ route('grupo_cidade.listar') }}">Grupos de Cidades</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="{{ route('produto.listar') }}">Produtos</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " href="#">Campanhas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#">Desconto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">Produtos</a>
-                    </li>
+
                 </ul>
             </div>
         </div>

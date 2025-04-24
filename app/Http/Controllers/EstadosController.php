@@ -58,6 +58,7 @@ class EstadosController extends Controller
         // Verifica se o estado esta cadastrado
         $estadoExistente = Estado::where('nome', $request->nome)
             ->where('sigla', $request->sigla)
+            ->where('id', '!=', $id)
             ->first();
 
         if ($estadoExistente) {
