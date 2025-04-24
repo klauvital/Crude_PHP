@@ -20,13 +20,14 @@
 
         <div class="mb-3">
             <label for="campanha_id" class="form-label">Campanha</label>
-            <select name="campanha_id" id="campanha_id" class="form-select">
-                <option value="">Selecione uma campanha</option>
-                @foreach(\App\Models\Campanha::all() as $campanha)
-                <option value="{{ $campanha->nome }}" {{ old('campanha_nome', $desconto->campanha_id) == $campanha->id ? 'selected' : '' }}>
-                    {{ $campanha->nome ?? 'Campanha ' . $campanha->id }}
+            <select name="campanha_id" class="form-control">
+                @foreach($campanhas as $campanha)
+                <option value="{{ $campanha->id }}"
+                    {{ $campanha->id == $desconto->campanha_id ? 'selected' : '' }}>
+                    {{ $campanha->nome_campanha }}
                 </option>
                 @endforeach
+            </select>
             </select>
         </div>
 

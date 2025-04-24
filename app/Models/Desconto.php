@@ -9,14 +9,15 @@ class Desconto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['campanha_id', 'valor_total', 'valor_desconto', 'percentual_desconto', 'valor_liquido'];
+    protected $fillable = [
+        'campanha_id', // Adicione isso também no banco e no fillable
+        'valor_total',
+        'valor_desconto',
+        'percentual_desconto',
+        'valor_liquido'
+    ];
 
-
-    public function campanhaProdutoRelacoes()
-    {
-        return $this->hasMany(CampanhaProdutoRelacao::class, 'id_desconto');
-    }
-
+    // Relacionamento direto com a campanha
     public function campanha()
     {
         return $this->belongsTo(Campanha::class, 'campanha_id');

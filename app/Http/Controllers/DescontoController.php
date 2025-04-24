@@ -12,13 +12,16 @@ class DescontoController extends Controller
     {
         $campanha_nome = Campanha::orderBy('nome_campanha')->get();
         $descontos = Desconto::with('campanha')->orderBy('id', 'desc')->get();
-        return view('desconto.listar', compact('descontos', $campanha_nome));
+        return view('desconto.listar', [
+            'descontos' => $descontos,
+            'campanha_nome' => $campanha_nome,
+        ]);
     }
-
     public function create()
     {
-        $campanha_nome = Campanha::orderBy('nome_campanha')->get();
-        return view('desconto.inserir');
+        $campanhas = Campanha::orderBy('nome_campanha')->get();
+
+        return view('desconto.inserir', compact('campanhas'));
     }
 
     public function store(Request $request)
@@ -45,15 +48,18 @@ class DescontoController extends Controller
 
     public function edit($id)
     {
-        $campanha_nome = Campanha::orderBy('nome_campanha')->get();
+        $campanhas = Campanha::orderBy('nome_campanha')->get();
         $desconto = Desconto::findOrFail($id);
-        return view('desconto.editar', compact('desconto', $campanha_nome));
-    }
 
+        return view('desconto.editar', [
+            'desconto' => $desconto,
+            'campanhas' => $campanhas,
+        ]);
+    }
+    
     public function update(Request $request, $id)
     {
         $request->validate([
-
             'campanha_id' => 'nullable|exists:campanhas,id',
             'valor_total' => 'nullable|numeric|min:0',
             'percentual_desconto' => 'nullable|numeric|min:0|max:100',
@@ -61,11 +67,10 @@ class DescontoController extends Controller
 
         $valorDesconto = ($request->percentual_desconto / 100) * $request->valor_total;
         $valorLiquido = $request->valor_total - $valorDesconto;
-        $campanha_nome = Campanha::orderBy('nome_campanha')->get();
+
         $desconto = Desconto::findOrFail($id);
         $desconto->update([
-
-            'campanha_id' => $request->campanha_nome,
+            'campanha_id' => $request->campanha_id, // corrigido aqui
             'valor_total' => $request->valor_total,
             'valor_desconto' => $valorDesconto,
             'percentual_desconto' => $request->percentual_desconto,

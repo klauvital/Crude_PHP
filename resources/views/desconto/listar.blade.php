@@ -20,7 +20,7 @@
             <th>ID</th>
             <th>Campanha</th>
             <th>Valor da Campanha</th>
-            <th>Valor Desconto</th>
+
             <th>Percentual Desconto (%)</th>
             <th>Desconto Calculado</th>
             <th>Valor Líquido da Campanha</th>
@@ -31,9 +31,9 @@
         @foreach($descontos as $desconto)
         <tr>
             <td>{{ $desconto->id }}</td>
-            <td>{{ $desconto->campanha->nome_campanha ?? 'N/A' }}</td>
+            <td>{{ $desconto->campanha->nome_campanha ?? 'Sem campanha' }}</td>
             <td>{{ number_format($desconto->valor_total, 2, ',', '.') ?? '-' }}</td>
-            <td>{{ number_format($desconto->valor_desconto, 2, ',', '.') ?? '-' }}</td>
+
             <td>{{ $desconto->percentual_desconto ?? '-' }}</td>
             <td>
                 @php

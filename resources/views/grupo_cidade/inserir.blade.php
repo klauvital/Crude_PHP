@@ -44,4 +44,5 @@
         <a href="{{ route('grupo_cidade.listar') }}" class="btn btn-secondary mt-3">Cancelar</a>
     </form>
 </div>
+
 @endsection
