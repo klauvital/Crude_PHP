@@ -37,10 +37,10 @@
         <tbody>
             @foreach ($campanhas as $campanha)
             <tr>
-                <td>{{ $campanha->nome_campanha }}</td>
+                <td class="text-capitalize">{{ $campanha->nome_campanha }}</td>
                 <td>{{ \Carbon\Carbon::parse($campanha->data)->format('d/m/Y') }}</td>
                 <td>{{ $campanha->status ? 'Ativa' : 'Inativa' }}</td>
-                <td>{{ $campanha->grupoCidade->nome_grupo ?? '—' }}</td>
+                <td class="text-capitalize">{{ $campanha->grupoCidade->nome_grupo ?? '—' }}</td>
                 <td>
                     @foreach ($campanha->produtos as $produto)
                     {{ $produto->nome }}@if (!$loop->last), @endif

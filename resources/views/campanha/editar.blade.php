@@ -26,7 +26,7 @@
 
         <div class="mb-3">
             <label for="nome_campanha" class="form-label">Nome da Campanha</label>
-            <input type="text" name="nome_campanha" class="form-control" value="{{ old('nome_campanha', $campanha->nome_campanha) }}" required>
+            <input type="text" name="nome_campanha" class="form-control text-capitalize" value="{{ old('nome_campanha', $campanha->nome_campanha) }}" required>
         </div>
 
         <div class="mb-3">

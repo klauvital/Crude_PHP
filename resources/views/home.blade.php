@@ -10,7 +10,8 @@
         <p>Vaga: <b>{{ $perfil }}</b></p>
         <p>Área: <b>{{ $area }}</b></p>
         <p>Empresa: <b>{{ $empresa }}</b></p>
-        <p>Data Início: <b>{{ $data }}</b></p>
+        <p>Data Início: <b>17/04/2025</b></p>
+
     </div>
 
     <h2 class="mt-4">Detalhes do Desafio</h2>
